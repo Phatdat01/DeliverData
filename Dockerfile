@@ -15,7 +15,7 @@ ENV PYSPARK_DRIVER_PYTHON=python
 
 ENTRYPOINT ["pyspark"]
 
-CMD ["spark-submit", "demo.py"]
+CMD ["spark-submit", "--master", "local[*]", "--packages", "org.apache.spark:spark-sql-kafka-0-10_2.12:3.1.2", "your_entry_point.py"]
 # CMD ["python", "demo.py"]
 
 
