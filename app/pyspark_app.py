@@ -14,7 +14,7 @@ schema = StructType().add("id", IntegerType()).add("name", StringType())
 kafka_df = spark \
     .readStream \
     .format("kafka") \
-    .option("kafka.bootstrap.servers", "kafka:9092") \
+    .option("kafka.bootstrap.servers", "9092:9092") \
     .option("subscribe", "my_topic") \
     .load()
 
@@ -26,7 +26,7 @@ parsed_df = parsed_df.select("data.*")
 mongo_df = spark \
     .read \
     .format("mongo") \
-    .option("spark.mongodb.input.uri", "mongodb://mongodb/mydb.collection") \
+    .option("spark.mongodb.input.uri", "mongodb://mongodb/demoMongo_db.collection") \
     .load()
 
 # Perform transformations on the data
@@ -35,7 +35,7 @@ transformed_df = parsed_df.join(mongo_df, "id")
 # Write the transformed data to MySQL
 transformed_df.write \
     .format("jdbc") \
-    .option("url", "jdbc:mysql://mysql:3306/mydb") \
+    .option("url", "jdbc:mysql://mysql:3306/demoMySQL_db") \
     .option("dbtable", "my_table") \
     .option("user", "username") \
     .option("password", "password") \
