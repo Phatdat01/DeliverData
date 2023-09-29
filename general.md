@@ -20,3 +20,10 @@ https://hub.docker.com/_/mysql
 
 docker exec -it my-sql /bin/bash
 ```
+
+# 5. Kafka
+```
+https://hub.docker.com/r/bitnami/kafka
+
+docker exec -it my-sql /bin/bash
+```
