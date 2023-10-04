@@ -1,0 +1,6 @@
+wsl --unregister docker-desktop
+wsl --unregister docker-desktop-data
+
+export DOCKER_HOST_IP=192.168.99.100
+
+/var/lib/docker/tmp/buildkit-mount3706963281

@@ -1,21 +1,13 @@
-FROM python:3.9-slim-buster
+FROM docker.io/bitnami/spark:3.3
 
-RUN apt-get update -yqq \
-    && apt-get upgrade -yqq \
-    && apt-get install openjdk-11-jdk -yqq
+USER root
 
-COPY requirements.txt /app/requirements.txt
-RUN pip install --force-reinstall -r app/requirements.txt
+# Install prerequisites
+RUN apt-get update && apt-get install -y curl
 
-COPY pyspark_app.py /app/pyspark_app.py
-
-ENV PYSPARK_PYTHON=python
-ENV PYSPARK_DRIVER_PYTHON=python
-
-ENTRYPOINT ["spark-submit", "/app/pyspark_app.py"]
-
-CMD ["spark-submit", "--master", "local[*]", "--packages", "org.apache.spark:spark-sql-kafka-0-10_2.12:3.1.2", "pyspark_app.py"]
-# CMD ["python", "demo.py"]
-
-
-
+RUN curl -O https://repo1.maven.org/maven2/io/delta/delta-core_2.12/2.2.0/delta-core_2.12-2.2.0.jar \
+    && curl -O https://repo1.maven.org/maven2/io/delta/delta-storage/2.2.0/delta-storage-2.2.0.jar \
+    && curl -O https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.19/mysql-connector-java-8.0.19.jar\
+    && mv delta-core_2.12-2.2.0.jar /opt/bitnami/spark/jars \
+    && mv delta-storage-2.2.0.jar /opt/bitnami/spark/jars \
+    && mv mysql-connector-java-8.0.19.jar /opt/bitnami/spark/jars

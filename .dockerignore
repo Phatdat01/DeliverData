@@ -1,3 +1,5 @@
-Dockerfile
-.dockerignore
-docker-compose.yml
+*
+!Dockerfile
+!files/run.sh
+!.travis/docker_push.sh
+!.travis.yml

@@ -1,9 +1,0 @@
-FROM docker.io/bitnami/spark:3.3
-
-USER root
-
-# Install prerequisites
-RUN apt-get update && apt-get install -y curl
-
-RUN curl -O https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.19/mysql-connector-java-8.0.19.jar \
-    && mv mysql-connector-java-8.0.19.jar /opt/bitnami/spark/jars
