@@ -1,0 +1,5 @@
+pyHive
+thrift
+thrift-sasl
+pyspark==3.3.2
+findspark==1.4.2

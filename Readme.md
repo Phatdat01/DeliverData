@@ -4,3 +4,4 @@
 * Thiết đặt một máy mới
 * Dùng từ cloud
 * Download Tạo thêm env trên môi trường sẵn có
+Mình sẽ hướng dẫn cách 2 vì nó tiện
